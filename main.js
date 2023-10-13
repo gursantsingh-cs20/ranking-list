@@ -35,21 +35,35 @@ function addItem() {
 }
 
 function removeLast() {
-  console.log("Remove Last");
+  console.log("Removing " + items[items.length - 1]);
+  items.pop();
 }
 
 function insert() {
-  console.log("Insert");
+  items.splice(
+    prompt(
+      "Where would you like to insert?",
+      0,
+      prompt("Enter an item to add to the list")
+    )
+  );
+  console.log("Insert at Position");
 }
 
 function removePos() {
+  items.splice(prompt("Where would you like to remove?", 1));
   console.log("Remove at Position");
 }
 
 function move() {
+  items[prompt("Where would you like to move from?")] =
+    items[prompt("Where would you like to move to?")];
   console.log("Move");
 }
 
 function edit() {
+  items[prompt("Where would you like to edit?")] = prompt(
+    "What would you like to change it to?"
+  );
   console.log("Edit");
 }
