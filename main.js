@@ -26,9 +26,12 @@ function btnClicked() {
   }
 }
 
+let items = [];
+
 // Menu Option Functions
 function addItem() {
-  console.log("Add Item");
+  items.push(prompt("Enter an item to add to the list"));
+  console.log("Added Item " + items[items.length - 1]);
 }
 
 function removeLast() {
