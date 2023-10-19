@@ -3,6 +3,9 @@
 // HTML Variables
 let outputEl = document.getElementById("output");
 
+// Global Variables
+let items = [];
+
 // Button Event Listener
 document.getElementById("btn").addEventListener("click", btnClicked);
 
@@ -24,9 +27,9 @@ function btnClicked() {
   } else if (selection === "edit") {
     edit();
   }
-}
 
-let items = [];
+  printList(items);
+}
 
 // Menu Option Functions
 function addItem() {
@@ -54,15 +57,27 @@ function removePos() {
 }
 
 function move() {
-  let temp = items[prompt("What would you like to move?")];
+  let temp = prompt("What would you like to move?");
+  let temp2 = prompt("Where would you like to move it?");
+  items.splice(temp2 - 1, 0, items[temp - 1]);
   items.splice(temp, 1);
-  items.splice(prompt("Where would you like to move it to?") - 1, 0, temp);
   console.log("Move");
 }
 
 function edit() {
-  items[prompt("Where would you like to edit?")] = prompt(
+  items[prompt("Where would you like to edit?") - 1] = prompt(
     "What would you like to change it to?"
   );
   console.log("Edit");
+}
+
+function printList(items) {
+  let outputEl = document.getElementById("output");
+  outputEl.innerHTML = "";
+
+  for (let i = 0; i < items.length; i++) {
+    let divEl = document.createElement("div");
+    divEl.innerHTML = i + 1 + ": " + items[i];
+    outputEl.appendChild(divEl);
+  }
 }
